@@ -28,7 +28,7 @@ class CreatePersonaTable extends Migration
             $table->string('password');
             $table->integer('id_tipopersona')->unsigned();
             $table->foreign('id_tipopersona')->references('id')->on('tipopersona')->onDelete('cascade');
-            
+
             $table->integer('codigo')->nullable() ;
             $table->integer('activo')->default(1);
 

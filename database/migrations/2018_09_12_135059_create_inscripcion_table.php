@@ -18,7 +18,7 @@ class CreateInscripcionTable extends Migration
             $table->integer('nota_final')->nullable();
             $table->timestamps();
             $table->integer('id_alumno')->unsigned();
-            $table->foreign('id_alumno')->references('id')->on('alumno')->onDelete('cascade');
+            $table->foreign('id_alumno')->references('id')->on('persona')->onDelete('cascade');
             $table->integer('id_programa')->unsigned();
             $table->foreign('id_programa')->references('id')->on('programa')->onDelete('cascade');
 

@@ -27,7 +27,7 @@ class CreateProgramaTable extends Migration
             $table->integer('id_gestion')->unsigned();
             $table->foreign('id_gestion')->references('id')->on('gestion')->onDelete('cascade');
             $table->integer('id_profesor')->unsigned();
-            $table->foreign('id_profesor')->references('id')->on('profesor')->onDelete('cascade');
+            $table->foreign('id_profesor')->references('id')->on('persona')->onDelete('cascade');
             $table->integer('id_materia')->unsigned();
             $table->foreign('id_materia')->references('id')->on('materia')->onDelete('cascade');
             $table->integer('activo');

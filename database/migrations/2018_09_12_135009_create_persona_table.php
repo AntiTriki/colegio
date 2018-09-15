@@ -18,9 +18,17 @@ class CreatePersonaTable extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->string('apellido');
+            $table->string('email')->nullable();
             $table->string('ci');
             $table->string('direccion');
             $table->integer('telefono');
+            $table->integer('genero');
+            $table->date('fecha_nac');
+            $table->string('usuario');
+            $table->string('password');
+            $table->integer('id_tipopersona');
+            $table->integer('codigo')->nullable() ;
+            $table->integer('activo')->default(1);
 
         });
     }

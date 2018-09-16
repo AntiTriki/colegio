@@ -23,6 +23,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Illuminate\Support\Facades\Auth::provider('mycustom', function($app, array $config) {
+            return new PersonaProvider($app['hash'], $config['model']);
+        });
+
         $this->registerPolicies();
 
         //

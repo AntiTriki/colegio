@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'tipopersona'], function () {
+    Route::get('/', 'TipopersonaController@index');
+    Route::match(['get', 'post'], 'create', 'TipopersonaController@create');
+    Route::match(['get', 'put'], 'update/{id}', 'TipopersonaController@update');
+    Route::delete('delete/{id}', 'TipopersonaController@delete');
+});

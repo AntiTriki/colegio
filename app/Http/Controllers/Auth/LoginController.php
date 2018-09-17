@@ -19,10 +19,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    public function username()
-    {
-        return 'usuario';
-    }
+
     /**
      * Where to redirect users after login.
      *
@@ -35,8 +32,16 @@ class LoginController extends Controller
      *
      * @return void
      */
+//    public function __construct()
+//    {
+//        $this->middleware('guest')->except('logout');
+//    }
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+    }
+    public function username()
+    {
+        return 'usuario';
     }
 }

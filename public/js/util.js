@@ -29,6 +29,8 @@ $(document).on('submit', 'form#frm', function (event) {
             } else {
                 $('#modalForm').modal('hide');
                 ajaxLoad(data.redirect_url);
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
             }
         },
         error: function (xhr, textStatus, errorThrown) {
@@ -53,7 +55,23 @@ function ajaxLoad(filename, content) {
         }
     });
 }
+    $('#modalDelete').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        $('#delete_id').val(button.data('id'));
+        $('#delete_token').val(button.data('token'));
+
+    });
+$('#modalForm').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    ajaxLoad(button.data('href'), 'modal_content');
+});
+
+$('#modalForm').on('shown.bs.modal', function () {
+    $('#focus').trigger('focus')
+});
+});
 function ajaxDelete(filename, token, content) {
+    
     content = typeof content !== 'undefined' ? content : 'content';
     $('.loading').show();
     $.ajax({
@@ -64,22 +82,11 @@ function ajaxDelete(filename, token, content) {
             $('#modalDelete').modal('hide');
             $("#" + content).html(data);
             $('.loading').hide();
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         },
         error: function (xhr, status, error) {
             alert(xhr.responseText);
         }
     });
 }
-$('#modalForm').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    ajaxLoad(button.data('href'), 'modal_content');
-});
-$('#modalDelete').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    $('#delete_id').val(button.data('id'));
-    $('#delete_token').val(button.data('token'));
-});
-$('#modalForm').on('shown.bs.modal', function () {
-    $('#focus').trigger('focus')
-});
-});

@@ -23,10 +23,14 @@
             color: red;
             font-weight: bold;
         }
+        input[id="delete_id"] {
+            display: none;
+        }
     </style>
 @endsection
 @section('content')
     <!-- Modal -->
+
     <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content" id="modal_content"></div>
@@ -44,12 +48,11 @@
                 <div class="modal-body">
                     <p>Are you sure want to delete?</p>
                     <input type="hidden" id="delete_token"/>
-                    <input type="hidden" id="delete_id"/>
+                    <input type="text" id="delete_id"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger"
-                            onclick="ajaxDelete('{{url('tipopersona/delete')}}/'+$('#delete_id').val(),$('#delete_token').val())">
+                    <button type="button" class="btn btn-danger" onclick="ajaxDelete('{{url('tipopersona/delete')}}/'+$('#delete_id').val(),$('#delete_token').val())">
                         Delete
                     </button>
                 </div>

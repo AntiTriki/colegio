@@ -66,8 +66,10 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'mycustom',
-            'model' => App\Persona::class,
+//            'driver' => 'mycustom',
+//            'model' => App\Persona::class,
+            'driver' => 'database',
+            'table' => 'persona',
         ],
 
         // 'users' => [

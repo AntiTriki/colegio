@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Turno extends Model
 {
     //
+    public $table = 'turno';
 }

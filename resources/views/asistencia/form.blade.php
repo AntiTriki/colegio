@@ -23,7 +23,7 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal"> Close</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cerrar</button>
     {!! Form::submit("Save",["class"=>"btn btn-primary"])!!}
 </div>
 {!! Form::close() !!}

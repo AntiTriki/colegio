@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tipopersona;
+use App\Inscripcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-class TipopersonaController extends Controller
+class InscripcionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,15 +20,15 @@ class TipopersonaController extends Controller
         $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'created_at'));
 
         $request->session()->put('sort', $request->has('sort') ? $request->get('sort') : ($request->session()->has('sort') ? $request->session()->get('sort') : 'desc'));
-        $tipopersonas = new Tipopersona();
-        $tipopersonas = $tipopersonas->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
+        $inscripcions = new Inscripcion();
+        $inscripcions = $inscripcions->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
             ->orderBy($request->session()->get('field'), $request->session()->get('sort'))
             ->paginate(5);
 
         if ($request->ajax())
-            return view('tipopersona.index', ['tipopersonas' => $tipopersonas]);
+            return view('inscripcion.index', ['inscripcions' => $inscripcions]);
         else
-            return view('tipopersona.ajax', ['tipopersonas' => $tipopersonas]);
+            return view('inscripcion.ajax', ['inscripcions' => $inscripcions]);
     }
 
     /**
@@ -42,7 +42,7 @@ class TipopersonaController extends Controller
         //
         if ($request->isMethod('get'))
 
-            return view('tipopersona.form');
+            return view('inscripcion.form');
         else {
             $rules = [
                 'descripcion' => 'required',
@@ -54,19 +54,19 @@ class TipopersonaController extends Controller
                     'fail' => true,
                     'errors' => $validator->errors()
                 ]);
-            $tipopersona = new Tipopersona();
-            $tipopersona->descripcion = $request->descripcion;
+            $inscripcion = new Inscripcion();
+            $inscripcion->descripcion = $request->descripcion;
 
-            $tipopersona->save();
+            $inscripcion->save();
             return response()->json([
                 'fail' => false,
-                'redirect_url' => url('tipopersona')
+                'redirect_url' => url('inscripcion')
             ]);
         }
     }
 
 
-    public function edit(Tipopersona $tipopersona)
+    public function edit(Inscripcion $inscripcion)
     {
         //
     }
@@ -75,14 +75,14 @@ class TipopersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tipopersona  $tipopersona
+     * @param  \App\Inscripcion  $inscripcion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
         if ($request->isMethod('get'))
-            return view('tipopersona.form', ['tipopersona' => Tipopersona::find($id)]);
+            return view('inscripcion.form', ['inscripcion' => Inscripcion::find($id)]);
         else {
             $rules = [
                 'descripcion' => 'required',
@@ -94,13 +94,13 @@ class TipopersonaController extends Controller
                     'fail' => true,
                     'errors' => $validator->errors()
                 ]);
-            $tipopersona = Tipopersona::find($id);
-            $tipopersona->descripcion = $request->descripcion;
+            $inscripcion = Inscripcion::find($id);
+            $inscripcion->descripcion = $request->descripcion;
 
-            $tipopersona->save();
+            $inscripcion->save();
             return response()->json([
                 'fail' => false,
-                'redirect_url' => url('tipopersona')
+                'redirect_url' => url('inscripcion')
             ]);
         }
     }
@@ -110,7 +110,7 @@ class TipopersonaController extends Controller
     public function delete($id)
     {
         //
-        Tipopersona::destroy($id);
-        return redirect('/tipopersona');
+        Inscripcion::destroy($id);
+        return redirect('/inscripcion');
     }
 }

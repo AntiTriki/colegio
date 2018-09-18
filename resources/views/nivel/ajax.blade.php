@@ -40,20 +40,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <h5 class="modal-title"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure want to delete?</p>
+                    <p>Seguro?</p>
                     <input type="hidden" id="delete_token"/>
                     <input type="text" id="delete_id"/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-danger" onclick="ajaxDelete('{{url('nivel/delete')}}/'+$('#delete_id').val(),$('#delete_token').val())">
-                        Delete
+                        Eliminar
                     </button>
                 </div>
             </div>

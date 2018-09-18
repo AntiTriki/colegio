@@ -42,7 +42,7 @@ Route::group(['prefix' => 'grado'], function () {
     Route::match(['get', 'put'], 'update/{id}', 'GradoController@update');
     Route::delete('delete/{id}', 'GradoController@delete');
 });
-Route::group(['prefix' => 'Grupo'], function () {
+Route::group(['prefix' => 'grupo'], function () {
     Route::get('/', 'GrupoController@index');
     Route::match(['get', 'post'], 'create', 'GrupoController@create');
     Route::match(['get', 'put'], 'update/{id}', 'GrupoController@update');

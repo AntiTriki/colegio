@@ -1,12 +1,12 @@
 
-@if(isset($tipopersona))
-    {!! Form::model($tipopersona,['method'=>'put','id'=>'frm']) !!}
+@if(isset($puntaje))
+    {!! Form::model($puntaje,['method'=>'put','id'=>'frm']) !!}
 @else
     {!! Form::open(['id'=>'frm']) !!}
 @endif
 
 <div class="modal-header">
-    <h5 class="modal-title">{{isset($tipopersona)?'Edit':'New'}} tipopersona</h5>
+    <h5 class="modal-title">{{isset($puntaje)?'Edit':'New'}} puntaje</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -23,7 +23,7 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal"> Close</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal"> Cerrar</button>
     {!! Form::submit("Save",["class"=>"btn btn-primary"])!!}
 </div>
 {!! Form::close() !!}

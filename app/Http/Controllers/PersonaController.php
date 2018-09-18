@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Persona;
 use App\Tipopersona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-class TipopersonaController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,15 +21,15 @@ class TipopersonaController extends Controller
         $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'created_at'));
 
         $request->session()->put('sort', $request->has('sort') ? $request->get('sort') : ($request->session()->has('sort') ? $request->session()->get('sort') : 'desc'));
-        $tipopersonas = new Tipopersona();
-        $tipopersonas = $tipopersonas->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
+        $personas = new Persona();
+        $personas = $personas->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
             ->orderBy($request->session()->get('field'), $request->session()->get('sort'))
             ->paginate(5);
-
+    $tipopersonas= Tipopersona::where('activo',1)->get();
         if ($request->ajax())
-            return view('tipopersona.index', ['tipopersonas' => $tipopersonas]);
+            return view('persona.index', ['personas' => $personas,'tipopersonas'=>$tipopersonas]);
         else
-            return view('tipopersona.ajax', ['tipopersonas' => $tipopersonas]);
+            return view('persona.ajax', ['personas' => $personas,'tipopersonas'=>$tipopersonas]);
     }
 
     /**
@@ -42,7 +43,7 @@ class TipopersonaController extends Controller
         //
         if ($request->isMethod('get'))
 
-            return view('tipopersona.form');
+            return view('persona.form');
         else {
             $rules = [
                 'descripcion' => 'required',
@@ -54,19 +55,30 @@ class TipopersonaController extends Controller
                     'fail' => true,
                     'errors' => $validator->errors()
                 ]);
-            $tipopersona = new Tipopersona();
-            $tipopersona->descripcion = $request->descripcion;
+            $persona = new Persona();
+            $persona->usuario = $request->usuario;
+            $persona->email = $request->email;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
+            $persona-> = $request->;
 
-            $tipopersona->save();
+            $persona->save();
             return response()->json([
                 'fail' => false,
-                'redirect_url' => url('tipopersona')
+                'redirect_url' => url('persona')
             ]);
         }
     }
 
 
-    public function edit(Tipopersona $tipopersona)
+    public function edit(Persona $persona)
     {
         //
     }
@@ -75,14 +87,14 @@ class TipopersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tipopersona  $tipopersona
+     * @param  \App\Persona  $persona
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
         if ($request->isMethod('get'))
-            return view('tipopersona.form', ['tipopersona' => Tipopersona::find($id)]);
+            return view('persona.form', ['persona' => Persona::find($id)]);
         else {
             $rules = [
                 'descripcion' => 'required',
@@ -94,13 +106,13 @@ class TipopersonaController extends Controller
                     'fail' => true,
                     'errors' => $validator->errors()
                 ]);
-            $tipopersona = Tipopersona::find($id);
-            $tipopersona->descripcion = $request->descripcion;
+            $persona = Persona::find($id);
+            $persona->descripcion = $request->descripcion;
 
-            $tipopersona->save();
+            $persona->save();
             return response()->json([
                 'fail' => false,
-                'redirect_url' => url('tipopersona')
+                'redirect_url' => url('persona')
             ]);
         }
     }
@@ -110,7 +122,7 @@ class TipopersonaController extends Controller
     public function delete($id)
     {
         //
-        Tipopersona::destroy($id);
-        return redirect('/tipopersona');
+        Persona::destroy($id);
+        return redirect('/persona');
     }
 }

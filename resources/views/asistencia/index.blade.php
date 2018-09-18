@@ -1,7 +1,7 @@
 <div class="container">
     <div class="float-right">
         <a href="#modalForm" data-toggle="modal" data-href="{{url('tipopersona/create')}}"
-           class="btn btn-primary">New</a>
+           class="btn btn-primary">Nuevo</a>
     </div>
     <h1 style="font-size: 1.3rem">Roles</h1>
     <hr/>
@@ -20,7 +20,7 @@
                     <button type="submit" class="btn btn-warning"
                             onclick="ajaxLoad('{{url('tipopersona')}}?search='+$('#search').val())"
                     >
-                        Search
+                        Buscar
                     </button>
                 </div>
             </div>
@@ -29,7 +29,7 @@
     <table class="table table-bordered bg-light">
         <thead class="bg-dark" style="color: white">
         <tr>
-            <th width="60px" style="vertical-align: middle;text-align: center">No</th>
+            <th width="60px" style="vertical-align: middle;text-align: center">No.</th>
             <th style="vertical-align: middle">
                 <a href="javascript:ajaxLoad('{{url('tipopersona?field=descripcion&sort='.(request()->session()->get('sort')=='asc'?'desc':'asc'))}}')">
                     Name
@@ -39,7 +39,7 @@
            
             
             
-            <th width="130px" style="vertical-align: middle">Action</th>
+            <th width="130px" style="vertical-align: middle">Acción</th>
         </tr>
         </thead>
         <tbody>
@@ -55,13 +55,13 @@
                 <td style="vertical-align: middle" align="center">
                     <a class="btn btn-primary btn-sm" title="Edit" href="#modalForm" data-toggle="modal"
                        data-href="{{url('tipopersona/update/'.$tipopersona->id)}}">
-                        Edit</a>
+                        Editar</a>
                     <input type="hidden" name="_method" value="delete"/>
                     <a class="btn btn-danger btn-sm" title="Delete" data-toggle="modal"
                        href="#modalDelete"
                        data-id="{{$tipopersona->id}}"
                        data-token="{{csrf_token()}}">
-                        Delete
+                        Eliminar
                     </a>
                 </td>
             </tr>

@@ -81,7 +81,7 @@
                             <label for="fecha_nac" class="col-md-4 col-form-label text-md-right">{{ __('fecha_nac') }}</label>
 
                             <div class="col-md-6">
-                                <input id="fecha_nac" type="text" class="form-control{{ $errors->has('fecha_nac') ? ' is-invalid' : '' }}" name="fecha_nac" value="{{ old('fecha_nac') }}" required autofocus>
+                                <input id="fecha_nac" type="text" class="fecha form-control{{ $errors->has('fecha_nac') ? ' is-invalid' : '' }}" name="fecha_nac" value="{{ old('fecha_nac') }}" required autofocus>
 
                                 @if ($errors->has('fecha_nac'))
                                     <span class="invalid-feedback" role="alert">

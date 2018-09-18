@@ -23,6 +23,7 @@ class CreatePuntajeTable extends Migration
             $table->foreign('id_tiponota')->references('id')->on('tiponota')->onDelete('cascade');
             $table->integer('id_bimestre')->unsigned();
             $table->foreign('id_bimestre')->references('id')->on('bimestre')->onDelete('cascade');
+            $table->integer('activo')->default(1);
         });
     }
 

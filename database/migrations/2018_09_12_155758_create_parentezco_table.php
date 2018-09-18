@@ -20,6 +20,7 @@ class CreateParentezcoTable extends Migration
             $table->foreign('id_tutor')->references('id')->on('persona')->onDelete('cascade');
             $table->integer('id_alumno')->unsigned();
             $table->foreign('id_alumno')->references('id')->on('persona')->onDelete('cascade');
+            $table->integer('activo')->default(1);
         });
     }
 

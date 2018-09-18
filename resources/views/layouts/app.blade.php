@@ -20,6 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/date.css') }}" rel="stylesheet">
 
     @yield('css')
 </head>
@@ -79,8 +81,10 @@
     </div>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
+    <script src="{{asset('js/date.js')}}"></script>
     <script src="{{asset('js/util.js')}}"></script>
     <script src="{{asset('js/popper.js')}}"></script>
+
 
 
     @yield('js')

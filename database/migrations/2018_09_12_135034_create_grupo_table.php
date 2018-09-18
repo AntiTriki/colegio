@@ -17,6 +17,7 @@ class CreateGrupoTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('descripcion');
+            $table->integer('activo')->default(1);
         });
     }
 

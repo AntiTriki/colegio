@@ -71,7 +71,7 @@ $('#modalForm').on('shown.bs.modal', function () {
 });
 });
 function ajaxDelete(filename, token, content) {
-    
+
     content = typeof content !== 'undefined' ? content : 'content';
     $('.loading').show();
     $.ajax({
@@ -90,3 +90,9 @@ function ajaxDelete(filename, token, content) {
         }
     });
 }
+
+$('.fecha').datepicker({
+    format: 'dd/mm/yyyy',
+    uiLibrary: 'bootstrap4'
+});
+

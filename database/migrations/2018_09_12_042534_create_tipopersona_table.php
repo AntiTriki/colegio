@@ -17,6 +17,7 @@ class CreateTipopersonaTable extends Migration
             $table->increments('id');
             $table->string('descripcion');
             $table->timestamps();
+            $table->integer('activo')->default(1);
         });
     }
 

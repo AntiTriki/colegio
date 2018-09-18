@@ -19,6 +19,7 @@ class CreateGestionTable extends Migration
             $table->string('descripcion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
+            $table->integer('activo')->default(1);
         });
     }
 

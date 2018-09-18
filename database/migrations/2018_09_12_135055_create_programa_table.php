@@ -30,7 +30,7 @@ class CreateProgramaTable extends Migration
             $table->foreign('id_profesor')->references('id')->on('persona')->onDelete('cascade');
             $table->integer('id_materia')->unsigned();
             $table->foreign('id_materia')->references('id')->on('materia')->onDelete('cascade');
-            $table->integer('activo');
+            $table->integer('activo')->default(1);
         });
     }
 

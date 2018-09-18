@@ -18,9 +18,10 @@ class CreateAsistenciaTable extends Migration
             $table->timestamps();
             $table->integer('id_inscripcion')->unsigned();
             $table->foreign('id_inscripcion')->references('id')->on('inscripcion')->onDelete('cascade');
-            $table->integer('presente');
+            $table->integer('presente')->nullable();
             $table->date('fecha');
             $table->string('comentario')->nullable();
+            $table->integer('activo')->default(1);
         });
     }
 

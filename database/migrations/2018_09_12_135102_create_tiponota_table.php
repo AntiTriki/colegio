@@ -18,6 +18,7 @@ class CreateTiponotaTable extends Migration
             $table->integer('ponderado');
             $table->string('nombre');
             $table->timestamps();
+            $table->integer('activo')->default(1);
         });
     }
 

@@ -92,7 +92,7 @@ function ajaxDelete(filename, token, content) {
 }
 
 $('.fecha').datepicker({
-    format: 'dd/mm/yyyy',
+    format: 'yyyy-mm-dd',
     uiLibrary: 'bootstrap4'
 });
 

@@ -1,6 +1,12 @@
+<style>
+    .modal-lg {
+        max-width: 80% !important;
+        height: 80% !important;
+    }
+</style>
 <div class="container">
     <div class="float-right">
-        <a href="#modalForm" data-toggle="modal" data-href="{{url('persona/create')}}"
+        <a href="{{url('persona/create')}}"
            class="btn btn-primary">Nuevo</a>
     </div>
     <h1 style="font-size: 1.3rem">Persona</h1>
@@ -31,14 +37,17 @@
         <tr>
             <th width="60px" style="vertical-align: middle;text-align: center">No.</th>
             <th style="vertical-align: middle">
-                <a href="javascript:ajaxLoad('{{url('persona?field=descripcion&sort='.(request()->session()->get('sort')=='asc'?'desc':'asc'))}}')">
-                    Name
+                <a href="javascript:ajaxLoad('{{url('persona?field=nombre&sort='.(request()->session()->get('sort')=='asc'?'desc':'asc'))}}')">
+                    Nombre
                 </a>
-                {{request()->session()->get('field')=='descripcion'?(request()->session()->get('sort')=='asc'?'&#9652;':'&#9662;'):''}}
+                {{request()->session()->get('field')=='nombre'?(request()->session()->get('sort')=='asc'?'&#9652;':'&#9662;'):''}}
             </th>
-           
-            
-            
+            <th style="vertical-align: middle">
+                Apellido
+            </th>
+            <th style="vertical-align: middle">
+                Tipo de Persona
+            </th>
             <th width="152px" style="vertical-align: middle">Acción</th>
         </tr>
         </thead>
@@ -49,12 +58,13 @@
         @foreach($personas as $persona)
             <tr>
                 <th style="vertical-align: middle;text-align: center">{{$i++}}</th>
-                <td style="vertical-align: middle">{{ $persona->descripcion }}</td>
-                
+                <td style="vertical-align: middle">{{ $persona->nombre }}</td>
+                <td style="vertical-align: middle">{{ $persona->apellido }}</td>
+                <td style="vertical-align: middle">{{ $persona->tipo->descripcion }}</td>
+
                 
                 <td style="vertical-align: middle" align="center">
-                    <a class="btn btn-primary btn-sm" title="Edit" href="#modalForm" data-toggle="modal"
-                       data-href="{{url('persona/update/'.$persona->id)}}">
+                    <a class="btn btn-primary btn-sm" title="Edit" href="{{url('persona/update/'.$persona->id)}}">
                         Editar</a>
                     <input type="hidden" name="_method" value="delete"/>
                     <a class="btn btn-danger btn-sm" title="Delete" data-toggle="modal"

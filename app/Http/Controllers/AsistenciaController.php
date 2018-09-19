@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Tipopersona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-class TipopersonaController extends Controller
+class AsistenciaController extends Controller
 {
     /**
      * Display a listing of the resource.

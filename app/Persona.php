@@ -26,6 +26,9 @@ class Persona extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
+    public function tipo()
+    {
+        return $this->belongsTo('App\Tipopersona','id_tipopersona');
+    }
     //
 }

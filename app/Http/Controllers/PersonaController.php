@@ -22,14 +22,16 @@ class PersonaController extends Controller
 
         $request->session()->put('sort', $request->has('sort') ? $request->get('sort') : ($request->session()->has('sort') ? $request->session()->get('sort') : 'desc'));
         $personas = new Persona();
-        $personas = $personas->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
+        $personas = $personas->where('codigo', 'like', '%' . $request->session()->get('search') . '%')
             ->orderBy($request->session()->get('field'), $request->session()->get('sort'))
             ->paginate(5);
+        $tipopersonas = new Tipopersona();
     $tipopersonas= Tipopersona::where('activo',1)->get();
+
         if ($request->ajax())
-            return view('persona.index', ['personas' => $personas,'tipopersonas'=>$tipopersonas]);
+            return view('persona.index', compact('personas'));
         else
-            return view('persona.ajax', ['personas' => $personas,'tipopersonas'=>$tipopersonas]);
+            return view('persona.ajax', compact('personas'));
     }
 
     /**
@@ -41,33 +43,37 @@ class PersonaController extends Controller
     {
 
         //
-        if ($request->isMethod('get'))
-
-            return view('persona.form');
+        if ($request->isMethod('get')) {
+            $tipopersonas = Tipopersona::where('activo', 1)->get();
+            return view('auth.register', compact('tipopersonas'));
+            //return view('persona.form', compact('tipopersonas'));
+        }
         else {
             $rules = [
-                'descripcion' => 'required',
+                'codigo' => 'required',
 
             ];
+
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails())
                 return response()->json([
                     'fail' => true,
                     'errors' => $validator->errors()
                 ]);
+
             $persona = new Persona();
             $persona->usuario = $request->usuario;
             $persona->email = $request->email;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
-            $persona-> = $request->;
+            $persona->password = Hash::make($request->password);
+            $persona->nombre = $request->nombre;
+            $persona->apellido = $request->apellido;
+            $persona->ci = $request->ci;
+            $persona->direccion = $request->direccion;
+            $persona->telefono = $request->telefono;
+            $persona->fecha_nac = $request->fecha_nac;
+            $persona->genero = $request->genero;
+            $persona->id_tipopersona = $request->id_tipopersona;
+            $persona->codigo = $request->codigo;
 
             $persona->save();
             return response()->json([
@@ -93,11 +99,14 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $per = Persona::find($id);
+
+        $tipopersonas = Tipopersona::where('activo', 1)->get();
         if ($request->isMethod('get'))
-            return view('persona.form', ['persona' => Persona::find($id)]);
+            return view('auth.update', ['persona' => Persona::find($id),'tipopersonas' => $tipopersonas]);
         else {
             $rules = [
-                'descripcion' => 'required',
+                'codigo' => 'required',
 
             ];
             $validator = Validator::make($request->all(), $rules);
@@ -107,13 +116,26 @@ class PersonaController extends Controller
                     'errors' => $validator->errors()
                 ]);
             $persona = Persona::find($id);
-            $persona->descripcion = $request->descripcion;
+            $persona->email = $request->email;
+            if (!empty($request->password)) {
+                $persona->password = Hash::make($request->password);
+            }else{
 
+            }
+
+            $persona->nombre = $request->nombre;
+            $persona->apellido = $request->apellido;
+            $persona->ci = $request->ci;
+            $persona->direccion = $request->direccion;
+            $persona->telefono = $request->telefono;
+            $persona->fecha_nac = $request->fecha_nac;
+            $persona->genero = $request->genero;
+            $persona->id_tipopersona = $request->id_tipopersona;
+            $persona->codigo = $request->codigo;
+            $persona->usuario = $request->usuario;
             $persona->save();
-            return response()->json([
-                'fail' => false,
-                'redirect_url' => url('persona')
-            ]);
+            return redirect('/persona');
+
         }
     }
 

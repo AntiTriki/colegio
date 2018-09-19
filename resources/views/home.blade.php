@@ -22,7 +22,7 @@
 {{--</div>--}}
 <div class="container bootstrap snippet">
     <div class="panel-body inf-content">
-        <div style="background-color: #d5fffc" class="row justify-content-center rounded bg-gradient-success">
+        <div style="background-color: #d5fffc;padding: 50px" class="row justify-content-center rounded bg-gradient-success">
             <div class="col-md-4">
                 <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/user-453533-fdadfd.png" data-original-title="Usuario">
                 <ul title="Ratings" class="list-inline ratings text-center">
@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <div class="col-md-6">
-                <strong>Información</strong><br>
+                <h2>Información</h2><br>
                 <div class="table-responsive">
                     <table class="table table-condensed table-responsive table-user-information">
                         <tbody>
@@ -106,29 +106,29 @@
                                 </strong>
                             </td>
                             <td class="text-primary">
-                                noreply@email.com
+                                {{Auth::user()->email}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
                                     <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                    created
+                                    Creado
                                 </strong>
                             </td>
                             <td class="text-primary">
-                                20 jul 20014
+                                {{Auth::user()->created_at}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
                                     <span class="glyphicon glyphicon-calendar text-primary"></span>
-                                    Modified
+                                    Modificado
                                 </strong>
                             </td>
                             <td class="text-primary">
-                                20 jul 20014 20:00:00
+                                {{Auth::user()->updated_at}}
                             </td>
                         </tr>
                         </tbody>

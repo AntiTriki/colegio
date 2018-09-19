@@ -12,14 +12,30 @@
     </button>
 </div>
 <div class="modal-body">
-    <div class="form-group row required">
+    <div class="form-group row ">
         {!! Form::label("descripcion","Descripcion",["class"=>"col-form-label col-md-3"]) !!}
-        <div class="col-md-9">
-            {!! Form::text("descripcion",null,["class"=>"form-control".($errors->has('descripcion')?" is-invalid":""),'placeholder'=>'descripcion','id'=>'focus']) !!}
-            <span id="error-name" class="invalid-feedback"></span>
+        <div class="col-md-6">
+            <select id="id_alumno" class="form-control" name="id_alumno">
+
+                @foreach($personas as $a)
+                    <option value="{{$a->alumno->id }}"  >{{$a->alumno->nombre.' '.$a->alumno->apellido }}</option>
+                @endforeach
+            </select>
+
         </div>
     </div>
+    <div class="form-group row ">
+        {!! Form::label("descripcion","Descripcion",["class"=>"col-form-label col-md-3"]) !!}
+        <div class="col-md-6">
+            <select id="id_tutor" class="form-control" name="id_tutor">
 
+                @foreach($personas as $p)
+                    <option value="{{$p->tutor->id }}"  >{{$p->tutor->nombre.' '.$p->tutor->apellido }}</option>
+                @endforeach
+            </select>
+
+        </div>
+    </div>
 
 </div>
 <div class="modal-footer">

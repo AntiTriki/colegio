@@ -16,19 +16,16 @@ class ParentezcoController extends Controller
     {
 
         //
-        $request->session()->put('search', $request->has('search') ? $request->get('search') : ($request->session()->has('search') ? $request->session()->get('search') : ''));
-        $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'created_at'));
 
-        $request->session()->put('sort', $request->has('sort') ? $request->get('sort') : ($request->session()->has('sort') ? $request->session()->get('sort') : 'desc'));
         $parentezcos = new Parentezco();
-        $parentezcos = $parentezcos->where('descripcion', 'like', '%' . $request->session()->get('search') . '%')
-            ->orderBy($request->session()->get('field'), $request->session()->get('sort'))
-            ->paginate(5);
+        $parentezcos= Parentezco::all();
+        $personas =Persona::where('activo',1)->get();
+
 
         if ($request->ajax())
-            return view('parentezco.index', ['parentezcos' => $parentezcos]);
+            return view('parentezco.index', ['parentezcos' => $parentezcos,'parentezcos' => $personas]);
         else
-            return view('parentezco.ajax', ['parentezcos' => $parentezcos]);
+            return view('parentezco.ajax', ['parentezcos' => $parentezcos,'parentezcos' =>$personas]);
     }
 
     /**

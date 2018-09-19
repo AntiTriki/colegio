@@ -29,7 +29,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ 'Colegio' }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -52,9 +52,20 @@
                                 Accesos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#"></a>
-                                <a class="dropdown-item" href="#"></a>
-                                <a class="dropdown-item" href="#"></a>
+                                <a class="dropdown-item" href="persona">Personas</a>
+                                <a class="dropdown-item" href="parentezco">Parentezco</a>
+                                <a class="dropdown-item" href="asistencia"></a>
+                                <a class="dropdown-item" href="bimestre">Bimestre</a>
+                                <a class="dropdown-item" href="gestion">Gestion</a>
+                                <a class="dropdown-item" href="grado">Grado</a>
+                                <a class="dropdown-item" href="grupo">Grupo</a>
+                                <a class="dropdown-item" href="materia">Materia</a>
+                                <a class="dropdown-item" href="nivel">Nivel</a>
+                                <a class="dropdown-item" href="turno">Turno</a>
+                                <a class="dropdown-item" href="programa">Programa</a>
+                                <a class="dropdown-item" href="inscripcion">Inscripcion</a>
+                                <a class="dropdown-item" href="tiponota">Tipos de Notas</a>
+                                <a class="dropdown-item" href="tipopersona">Rol</a>
                             </div>
                         </li>
                     </ul>

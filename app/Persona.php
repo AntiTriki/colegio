@@ -31,4 +31,12 @@ class Persona extends Authenticatable
         return $this->belongsTo('App\Tipopersona','id_tipopersona');
     }
     //
+    public function alumno()
+    {
+        return $this->belongsToMany('App\Persona','parentezco','id_tutor','id_alumno');
+    }
+    public function tutor()
+    {
+        return $this->belongsToMany('App\Persona','parentezco','id_alumno','id_tutor');
+    }
 }

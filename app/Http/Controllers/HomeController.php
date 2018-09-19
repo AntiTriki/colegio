@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tipopersona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
@@ -14,8 +15,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
+        $id=Auth::user()->id_tipopersona;
+        $tipopersonas = Tipopersona::where('id', $id)->get();
         //
-    return view('home');
+    return view('home',compact('tipopersonas'));
     }
 }
